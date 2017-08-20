@@ -1,53 +1,37 @@
-from django.shortcuts import render
+from rest_framework import generics, permissions
+from django.contrib.auth.models import User
 
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
 from bookmarks.models import Bookmark
-from bookmarks.serializers import BookmarkSerializer
+from bookmarks.serializers import BookmarkSerializer, UserSerializer
+from bookmarks.permissions import IsOwner
 
 
-@csrf_exempt
-def bookmark_list(request):
-    """
-    List all bookmarks, or create a new bookmark.
-    """
-    if request.method == 'GET':
-        bookmarks = Bookmark.objects.all()
-        serializer = BookmarkSerializer(bookmarks, many=True)
-        return JsonResponse(serializer.data, safe=False)
+class BookmarkList(generics.ListCreateAPIView):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = BookmarkSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
-@csrf_exempt
-def bookmark_detail(request, pk):
-    """
-    Retrieve, update or delete a bookmark.
-    """
-    try:
-        bookmark = Bookmark.objects.get(pk=pk)
-    except Bookmark.DoesNotExist:
-        return HttpResponse(status=404)
+    permission_classes = (permissions.IsAuthenticated, IsOwner, permissions.IsAdminUser)
 
-    if request.method == 'GET':
-        serializer = BookmarkSerializer(bookmark)
-        return JsonResponse(serializer.data)
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = BookmarkSerializer(bookmark, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
 
-    elif request.method == 'DELETE':
-        bookmark.delete()
-        return HttpResponse(status=204)
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    permission_classes = (permissions.IsAuthenticated, IsOwner, permissions.IsAdminUser)
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    permission_classes = (permissions.IsAuthenticated, IsOwner, permissions.IsAdminUser)
