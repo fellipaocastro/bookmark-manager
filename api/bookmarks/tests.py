@@ -39,6 +39,17 @@ class BookmarkTestCase(TestCase):
 "owner_id":2},{"id":2,"name":"Bookmark 2","url":"http://www.bookmark2.com","owner_id":3}]'''
         self.assertEqual(response.content, expected_response)
 
+    def test_admin_can_retrieve_list_of_all_users(self):
+        client = APIClient()
+        client.force_authenticate(user=self.adminuser)
+
+        response = client.get('/users/')
+
+        expected_response = b'''[{"id":1,"username":"admin","is_superuser":false},\
+{"id":2,"username":"user1","is_superuser":false},\
+{"id":3,"username":"user2","is_superuser":false}]'''
+        self.assertEqual(response.content, expected_response)
+
     def test_user_can_retrieve_list_of_its_own_bookmarks(self):
         client = APIClient()
         client.force_authenticate(user=self.user1)
