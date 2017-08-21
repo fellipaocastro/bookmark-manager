@@ -4,4 +4,4 @@ python:
 install:
     - pip install -r api/requirements.txt
 script:
-    - api/manage.py test
+    - cd api && pytest && cd -
