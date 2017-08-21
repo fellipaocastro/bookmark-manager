@@ -29,21 +29,22 @@ class BookmarkTestCase(TestCase):
             name="Bookmark 2", url="http://www.bookmark2.com", owner=cls.user2)
         cls.bookmark2.save()
 
-    def test_admin_can_retrieve_list_of_all_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.adminuser)
+    def setUp(self):
+        self.client = APIClient()
 
-        response = client.get('/bookmarks/')
+    def test_admin_can_retrieve_list_of_all_bookmarks(self):
+        self.client.force_authenticate(user=self.adminuser)
+
+        response = self.client.get('/bookmarks/')
 
         expected_response = b'''[{"id":1,"name":"Bookmark 1","url":"http://www.bookmark1.com",\
 "owner_id":2},{"id":2,"name":"Bookmark 2","url":"http://www.bookmark2.com","owner_id":3}]'''
         self.assertEqual(response.content, expected_response)
 
     def test_admin_can_retrieve_list_of_all_users(self):
-        client = APIClient()
-        client.force_authenticate(user=self.adminuser)
+        self.client.force_authenticate(user=self.adminuser)
 
-        response = client.get('/users/')
+        response = self.client.get('/users/')
 
         expected_response = b'''[{"id":1,"username":"admin","is_superuser":false},\
 {"id":2,"username":"user1","is_superuser":false},\
@@ -51,79 +52,71 @@ class BookmarkTestCase(TestCase):
         self.assertEqual(response.content, expected_response)
 
     def test_user_can_retrieve_list_of_its_own_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user1)
+        self.client.force_authenticate(user=self.user1)
 
-        response = client.get('/bookmarks/')
+        response = self.client.get('/bookmarks/')
 
         expected_response = b'''[{"id":1,"name":"Bookmark 1","url":"http://www.bookmark1.com",\
 "owner_id":2}]'''
         self.assertEqual(response.content, expected_response)
 
     def test_user_can_retrieve_details_of_its_own_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user1)
+        self.client.force_authenticate(user=self.user1)
 
-        response = client.get('/bookmarks/1/')
+        response = self.client.get('/bookmarks/1/')
 
         expected_response = b'''{"id":1,"name":"Bookmark 1","url":"http://www.bookmark1.com",\
 "owner_id":2}'''
         self.assertEqual(response.content, expected_response)
 
     def test_user_cannot_retrieve_details_of_others_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user1)
+        self.client.force_authenticate(user=self.user1)
 
-        response = client.get('/bookmarks/2/')
+        response = self.client.get('/bookmarks/2/')
 
         expected_response = b'{"detail":"Not found."}'
         self.assertEqual(response.content, expected_response)
 
     def test_user_can_create_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user1)
+        self.client.force_authenticate(user=self.user1)
 
         data = {'name': 'Bookmark 3', 'url': 'http://www.bookmark3.com'}
-        response = client.post('/bookmarks/', data, format='json')
+        response = self.client.post('/bookmarks/', data, format='json')
 
         expected_status_code = 201
         self.assertEqual(response.status_code, expected_status_code)
 
     def test_user_can_update_details_of_its_own_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user2)
+        self.client.force_authenticate(user=self.user2)
 
         data = {'name': 'Bookmark 21', 'url': 'http://www.bookmark21.com'}
-        response = client.put('/bookmarks/2/', data, format='json')
+        response = self.client.put('/bookmarks/2/', data, format='json')
 
         expected_response = b'''{"id":2,"name":"Bookmark 21","url":"http://www.bookmark21.com",\
 "owner_id":3}'''
         self.assertEqual(response.content, expected_response)
 
     def test_user_cannot_update_details_of_others_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user1)
+        self.client.force_authenticate(user=self.user1)
 
         data = {'name': 'Bookmark 21', 'url': 'http://www.bookmark21.com'}
-        response = client.put('/bookmarks/2/', data, format='json')
+        response = self.client.put('/bookmarks/2/', data, format='json')
 
         expected_response = b'{"detail":"Not found."}'
         self.assertEqual(response.content, expected_response)
 
     def test_user_can_delete_its_own_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user2)
+        self.client.force_authenticate(user=self.user2)
 
-        response = client.delete('/bookmarks/2/')
+        response = self.client.delete('/bookmarks/2/')
 
         expected_status_code = 204
         self.assertEqual(response.status_code, expected_status_code)
 
     def test_user_cannot_delete_others_bookmarks(self):
-        client = APIClient()
-        client.force_authenticate(user=self.user1)
+        self.client.force_authenticate(user=self.user1)
 
-        response = client.put('/bookmarks/2/')
+        response = self.client.put('/bookmarks/2/')
 
         expected_response = b'{"detail":"Not found."}'
         self.assertEqual(response.content, expected_response)
