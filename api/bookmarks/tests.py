@@ -5,6 +5,7 @@ from rest_framework.test import APIClient
 
 from bookmarks.models import Bookmark
 
+
 class BookmarkTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
