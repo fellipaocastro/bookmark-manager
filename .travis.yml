@@ -4,4 +4,4 @@ python:
 install:
     - pip install -r api/requirements.txt
 script:
-    - cd api && pytest && cd -
+    - cd api && pytest --verbose && cd -
