@@ -4,4 +4,8 @@ python:
 install:
     - pip install -r api/requirements.txt
 script:
-    - cd api && python manage.py test && flake8 --verbose . && cd -
+    - cd api
+    - python manage.py migrate
+    - python manage.py test
+    - flake8 --verbose .
+    - cd -
