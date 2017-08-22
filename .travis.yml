@@ -7,5 +7,5 @@ script:
     - cd api
     - python manage.py migrate
     - python manage.py test
-    - flake8 --verbose .
+    - flake8 .
     - cd -
