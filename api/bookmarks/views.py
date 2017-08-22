@@ -25,9 +25,6 @@ class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookmarkSerializer
 
     def get_queryset(self):
-        if self.request.user.is_staff:
-            return Bookmark.objects.all()
-
         return Bookmark.objects.filter(owner=self.request.user)
 
     permission_classes = (IsOwnerOrAdmin,)

@@ -11,10 +11,10 @@ class BookmarkTestCase(TestCase):
     def setUpClass(cls):
         super(BookmarkTestCase, cls).setUpClass()
 
-        cls.adminuser = User.objects.create_user('admin', 'admin@test.com', 'pass')
-        cls.adminuser.save()
-        cls.adminuser.is_staff = True
-        cls.adminuser.save()
+        cls.admin = User.objects.create_user('admin', 'admin@test.com', 'pass')
+        cls.admin.save()
+        cls.admin.is_staff = True
+        cls.admin.save()
 
         cls.user1 = User.objects.create_user('user1', 'user1@test.com', 'pass')
         cls.user1.save()
@@ -33,8 +33,26 @@ class BookmarkTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
 
+    def test_admin_can_retrieve_list_of_all_users(self):
+        self.client.force_authenticate(user=self.admin)
+
+        response = self.client.get('/users/')
+
+        expected_response = b'''[{"id":1,"username":"admin","is_superuser":false},\
+{"id":2,"username":"user1","is_superuser":false},\
+{"id":3,"username":"user2","is_superuser":false}]'''
+        self.assertEqual(response.content, expected_response)
+
+    def test_admin_can_retrieve_details_of_a_user(self):
+        self.client.force_authenticate(user=self.admin)
+
+        response = self.client.get('/users/2/')
+
+        expected_response = b'{"id":2,"username":"user1","is_superuser":false}'
+        self.assertEqual(response.content, expected_response)
+
     def test_admin_can_retrieve_list_of_all_bookmarks(self):
-        self.client.force_authenticate(user=self.adminuser)
+        self.client.force_authenticate(user=self.admin)
 
         response = self.client.get('/bookmarks/')
 
@@ -42,14 +60,20 @@ class BookmarkTestCase(TestCase):
 "owner_id":2},{"id":2,"name":"Bookmark 2","url":"http://www.bookmark2.com","owner_id":3}]'''
         self.assertEqual(response.content, expected_response)
 
-    def test_admin_can_retrieve_list_of_all_users(self):
-        self.client.force_authenticate(user=self.adminuser)
+    def test_user_cannot_retrieve_list_of_all_users(self):
+        self.client.force_authenticate(user=self.user1)
 
         response = self.client.get('/users/')
 
-        expected_response = b'''[{"id":1,"username":"admin","is_superuser":false},\
-{"id":2,"username":"user1","is_superuser":false},\
-{"id":3,"username":"user2","is_superuser":false}]'''
+        expected_response = b'{"detail":"You do not have permission to perform this action."}'
+        self.assertEqual(response.content, expected_response)
+
+    def test_user_cannot_retrieve_details_of_a_user(self):
+        self.client.force_authenticate(user=self.user1)
+
+        response = self.client.get('/users/3/')
+
+        expected_response = b'{"detail":"You do not have permission to perform this action."}'
         self.assertEqual(response.content, expected_response)
 
     def test_user_can_retrieve_list_of_its_own_bookmarks(self):
