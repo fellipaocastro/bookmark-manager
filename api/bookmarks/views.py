@@ -1,5 +1,6 @@
-from rest_framework import generics, permissions
 from django.contrib.auth.models import User
+
+from rest_framework import generics, permissions
 
 from bookmarks.models import Bookmark
 from bookmarks.serializers import BookmarkSerializer, UserSerializer
