@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 
-export class Bookmark {
-  id: number;
-  name: string;
-  url: string;
-}
+import { Bookmark } from './bookmark';
 
 const BOOKMARKS: Bookmark[] = [
   { id: 11, name: 'Google 11', url: 'http://www.google.com' },
@@ -29,18 +25,7 @@ const BOOKMARKS: Bookmark[] = [
         <span class="badge">{{bookmark.id}}</span> {{bookmark.name}}
       </li>
     </ul>
-    <div *ngIf="selectedBookmark">
-      <h2>{{selectedBookmark.name}} details!</h2>
-      <div><label>id: </label>{{selectedBookmark.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedBookmark.name" placeholder="name">
-      </div>
-      <div>
-        <label>url: </label>
-        <input [(ngModel)]="selectedBookmark.url" placeholder="name">
-      </div>
-    </div>
+    <bookmark-detail [bookmark]="selectedBookmark"></bookmark-detail>
   `,
   styles: [`
     .selected {
