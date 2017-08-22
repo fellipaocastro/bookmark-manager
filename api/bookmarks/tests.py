@@ -1,9 +1,8 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
 
 from rest_framework.test import APIClient
 
-from bookmarks.models import Bookmark
+from bookmarks.factories import UserFactory, AdminFactory, BookmarkFactory
 
 
 class BookmarkTestCase(TestCase):
@@ -11,24 +10,15 @@ class BookmarkTestCase(TestCase):
     def setUpClass(cls):
         super(BookmarkTestCase, cls).setUpClass()
 
-        cls.admin = User.objects.create_user('admin', 'admin@test.com', 'pass')
-        cls.admin.save()
-        cls.admin.is_staff = True
-        cls.admin.save()
+        cls.admin = AdminFactory.create()
+        cls.user1 = UserFactory.create(username='user1')
+        cls.user2 = UserFactory.create(username='user2')
 
-        cls.user1 = User.objects.create_user('user1', 'user1@test.com', 'pass')
-        cls.user1.save()
-
-        cls.user2 = User.objects.create_user('user2', 'user2@test.com', 'pass')
-        cls.user2.save()
-
-        cls.bookmark1 = Bookmark(
+        cls.bookmark1 = BookmarkFactory(
             name="Bookmark 1", url="http://www.bookmark1.com", owner=cls.user1)
-        cls.bookmark1.save()
 
-        cls.bookmark2 = Bookmark(
+        cls.bookmark2 = BookmarkFactory(
             name="Bookmark 2", url="http://www.bookmark2.com", owner=cls.user2)
-        cls.bookmark2.save()
 
     def setUp(self):
         self.client = APIClient()
@@ -38,9 +28,9 @@ class BookmarkTestCase(TestCase):
 
         response = self.client.get('/users/')
 
-        expected_response = b'''[{"id":1,"username":"admin","is_superuser":false},\
-{"id":2,"username":"user1","is_superuser":false},\
-{"id":3,"username":"user2","is_superuser":false}]'''
+        expected_response = b'''[{"id":1,"username":"admin","is_staff":true},\
+{"id":2,"username":"user1","is_staff":false},\
+{"id":3,"username":"user2","is_staff":false}]'''
         self.assertEqual(response.content, expected_response)
 
     def test_admin_can_retrieve_details_of_a_user(self):
@@ -48,7 +38,7 @@ class BookmarkTestCase(TestCase):
 
         response = self.client.get('/users/2/')
 
-        expected_response = b'{"id":2,"username":"user1","is_superuser":false}'
+        expected_response = b'{"id":2,"username":"user1","is_staff":false}'
         self.assertEqual(response.content, expected_response)
 
     def test_admin_can_retrieve_list_of_all_bookmarks(self):
