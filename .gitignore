@@ -101,3 +101,4 @@ ENV/
 .mypy_cache/
 
 api/db.sqlite3
+.DS_Store
