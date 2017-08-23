@@ -47,7 +47,8 @@ class BookmarkTestCase(TestCase):
         response = self.client.get('/bookmarks/')
 
         expected_response = b'''[{"id":1,"name":"Bookmark 1","url":"http://www.bookmark1.com",\
-"owner_id":2},{"id":2,"name":"Bookmark 2","url":"http://www.bookmark2.com","owner_id":3}]'''
+"owner_id":2,"owner_username":"user1"},{"id":2,"name":"Bookmark 2",\
+"url":"http://www.bookmark2.com","owner_id":3,"owner_username":"user2"}]'''
         self.assertEqual(response.content, expected_response)
 
     def test_user_cannot_retrieve_list_of_all_users(self):
@@ -72,7 +73,8 @@ class BookmarkTestCase(TestCase):
         response = self.client.get('/bookmarks/')
 
         expected_response = b'''[{"id":1,"name":"Bookmark 1","url":"http://www.bookmark1.com",\
-"owner_id":2}]'''
+"owner_id":2,"owner_username":"user1"}]'''
+
         self.assertEqual(response.content, expected_response)
 
     def test_user_can_retrieve_details_of_its_own_bookmarks(self):
@@ -81,7 +83,7 @@ class BookmarkTestCase(TestCase):
         response = self.client.get('/bookmarks/1/')
 
         expected_response = b'''{"id":1,"name":"Bookmark 1","url":"http://www.bookmark1.com",\
-"owner_id":2}'''
+"owner_id":2,"owner_username":"user1"}'''
         self.assertEqual(response.content, expected_response)
 
     def test_user_cannot_retrieve_details_of_others_bookmarks(self):
@@ -108,7 +110,7 @@ class BookmarkTestCase(TestCase):
         response = self.client.put('/bookmarks/2/', data, format='json')
 
         expected_response = b'''{"id":2,"name":"Bookmark 21","url":"http://www.bookmark21.com",\
-"owner_id":3}'''
+"owner_id":3,"owner_username":"user2"}'''
         self.assertEqual(response.content, expected_response)
 
     def test_user_cannot_update_details_of_others_bookmarks(self):
