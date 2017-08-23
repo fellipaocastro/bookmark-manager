@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { Bookmark } from './bookmark';
-import { BookmarkService } from './bookmark.service';
+import { Bookmark } from './../bookmark';
+import { BookmarkService } from './../bookmark.service';
 @Component({
   selector: 'bookmark-detail',
   template: `
