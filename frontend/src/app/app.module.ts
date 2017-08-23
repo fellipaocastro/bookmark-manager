@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BookmarkListComponent } from './bookmark-list/bookmark-list.component';
@@ -10,7 +10,11 @@ import { BookmarkService } from './bookmark.service';
 import { LoginComponent } from './login/login.component';
 import { RouteModule } from './app-routing.module';
 import { AuthGuard } from './auth.guard';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig(), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -26,7 +30,15 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
     HttpModule,
     RouteModule
   ],
-  providers: [BookmarkService, AuthGuard, AUTH_PROVIDERS],
+  providers: [
+    BookmarkService,
+    AuthGuard,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

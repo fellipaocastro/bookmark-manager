@@ -8,9 +8,10 @@ from bookmarks.models import Bookmark
 class BookmarkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Bookmark
-        fields = ('id', 'name', 'url', 'owner_id')
+        fields = ('id', 'name', 'url', 'owner_id', 'owner_username')
 
     owner_id = serializers.ReadOnlyField(source='owner.id')
+    owner_username = serializers.ReadOnlyField(source='owner.username')
 
 
 class UserSerializer(serializers.ModelSerializer):

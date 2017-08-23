@@ -12,7 +12,7 @@ class BookmarkList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         if self.request.user.is_staff:
-            return Bookmark.objects.all()
+            return Bookmark.objects.order_by('owner_id')
 
         return Bookmark.objects.filter(owner=self.request.user)
 
