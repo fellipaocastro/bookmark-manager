@@ -4,7 +4,7 @@ from rest_framework import generics, permissions
 
 from bookmarks.models import Bookmark
 from bookmarks.serializers import BookmarkSerializer, UserSerializer
-from bookmarks.permissions import IsOwner, IsPostMethodOrAdmin
+from bookmarks.permissions import IsPostMethodOrAdmin
 
 
 class BookmarkList(generics.ListCreateAPIView):
@@ -27,8 +27,6 @@ class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Bookmark.objects.filter(owner=self.request.user)
-
-    permission_classes = (IsOwner,)
 
 
 class UserList(generics.ListCreateAPIView):
