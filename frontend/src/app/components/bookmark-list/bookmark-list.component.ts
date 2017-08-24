@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Bookmark } from './../bookmark';
-import { BookmarkService } from './../bookmark.service';
-import { UserService } from './../user.service';
+import { Bookmark } from './../../bookmark';
+import { BookmarkService } from './../../services/bookmark.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'bookmark-list',

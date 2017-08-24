@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { BookmarkService } from './../bookmark.service';
-import { Bookmark } from './../bookmark';
+import { BookmarkService } from './../../services/bookmark.service';
+import { Bookmark } from './../../classes/bookmark';
 
 @Component({
   selector: 'app-bookmark-edit',
