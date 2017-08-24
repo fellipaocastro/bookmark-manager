@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tokenNotExpired } from 'angular2-jwt';
 
-import { LoginService } from './../login.service';
+import { UserService } from './../user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private userService: UserService,
     private router: Router
   ) { }
 
@@ -32,13 +32,7 @@ export class LoginComponent implements OnInit {
 
   send() {
     if (this.formLogin.valid) {
-      this.loginService.login(this.formLogin.value)
-        .subscribe(response => {
-          localStorage.setItem('token', response.token);
-
-          this.router.navigate(['/bookmarks']);
-        }
-      );
+      this.userService.login(this.formLogin.value);
     }
   }
 }

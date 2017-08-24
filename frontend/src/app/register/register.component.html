@@ -1,0 +1,7 @@
+<h1>{{title}}</h1>
+<h2>My Bookmarks</h2>
+<form [formGroup]="formRegister">
+  <input type='text' formControlName="username">
+  <input type='password' formControlName="password">
+  <button [disabled]="!formRegister.valid" (click)="send()">Cadastrar</button>
+</form>

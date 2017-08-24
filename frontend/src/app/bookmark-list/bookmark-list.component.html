@@ -1,9 +1,9 @@
 <h1>{{title}}</h1>
 <h2>My Bookmarks</h2>
-<button (click)="loginService.logout()">Logout</button>
+<button (click)="userService.logout()">Logout</button>
 <ul class="bookmarks">
   <li *ngFor="let bookmark of bookmarks">
     <span class="badge">{{bookmark.id}}</span> {{bookmark.name}}
-    <button (click)="delete(bookmark)">X</button>
+    <button *ngIf="!isStaff" (click)="delete(bookmark)">X</button>
   </li>
 </ul>

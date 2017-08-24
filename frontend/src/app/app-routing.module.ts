@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { BookmarkListComponent } from './bookmark-list/bookmark-list.component';
 import { BookmarkNewComponent } from './bookmark-new/bookmark-new.component';
@@ -8,6 +9,7 @@ import { BookmarkDeleteComponent } from './bookmark-delete/bookmark-delete.compo
 import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
+  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'bookmarks', component: BookmarkListComponent, canActivate: [AuthGuard]},
   {path: 'bookmarks/new', component: BookmarkNewComponent, canActivate: [AuthGuard]},

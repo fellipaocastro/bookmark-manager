@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Bookmark } from './../bookmark';
 import { BookmarkService } from './../bookmark.service';
-import { LoginService } from './../login.service';
+import { UserService } from './../user.service';
 
 @Component({
   selector: 'bookmark-list',
@@ -13,10 +13,11 @@ export class BookmarkListComponent implements OnInit {
   title = 'Bookmark Manager';
   bookmarks: Bookmark[];
   selectedBookmark: Bookmark;
+  isStaff: string = localStorage.getItem('is_staff');
 
   constructor(
     private bookmarkService: BookmarkService,
-    private loginService: LoginService
+    private userService: UserService
   ) { }
 
   getBookmarks(): void {
