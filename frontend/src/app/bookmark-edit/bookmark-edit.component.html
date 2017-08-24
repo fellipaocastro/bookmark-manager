@@ -1,0 +1,7 @@
+<h1>{{title}}</h1>
+<h2>My Bookmarks</h2>
+<form [formGroup]="formEdit">
+  <input type='text' formControlName="name" [(ngModel)]="bookmark.name">
+  <input type='text' formControlName="url" [(ngModel)]="bookmark.url">
+  <button [disabled]="!formEdit.valid" (click)="send()">Atualizar</button>
+</form>

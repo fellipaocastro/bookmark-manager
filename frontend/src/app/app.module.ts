@@ -5,13 +5,14 @@ import { HttpModule, Http, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BookmarkListComponent } from './bookmark-list/bookmark-list.component';
-import { BookmarkDetailComponent } from './bookmark-detail/bookmark-detail.component';
 import { BookmarkService } from './bookmark.service';
 import { LoginService } from './login.service';
 import { LoginComponent } from './login/login.component';
 import { RouteModule } from './app-routing.module';
 import { AuthGuard } from './auth.guard';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { BookmarkNewComponent } from './bookmark-new/bookmark-new.component';
+import { BookmarkEditComponent } from './bookmark-edit/bookmark-edit.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -21,9 +22,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   declarations: [
     AppComponent,
     BookmarkListComponent,
-    BookmarkDetailComponent,
     LoginComponent,
-    BookmarkListComponent
+    BookmarkNewComponent,
+    BookmarkEditComponent,
   ],
   imports: [
     BrowserModule,

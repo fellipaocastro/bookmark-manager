@@ -27,7 +27,12 @@ export class BookmarkListComponent implements OnInit {
     this.getBookmarks();
   }
 
-  onSelect(bookmark: Bookmark): void {
-    this.selectedBookmark = bookmark;
+  delete(bookmark) {
+    this.bookmarkService.delete(bookmark.id)
+      .subscribe(response => {
+        const index = this.bookmarks.indexOf(bookmark);
+        this.bookmarks.splice(index, 1);
+      }
+    );
   }
 }

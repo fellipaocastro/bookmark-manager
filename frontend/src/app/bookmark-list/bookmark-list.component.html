@@ -2,8 +2,8 @@
 <h2>My Bookmarks</h2>
 <button (click)="loginService.logout()">Logout</button>
 <ul class="bookmarks">
-  <li *ngFor="let bookmark of bookmarks" (click)="onSelect(bookmark)">
+  <li *ngFor="let bookmark of bookmarks">
     <span class="badge">{{bookmark.id}}</span> {{bookmark.name}}
+    <button (click)="delete(bookmark)">X</button>
   </li>
 </ul>
-<bookmark-detail [bookmark]="selectedBookmark"></bookmark-detail>
