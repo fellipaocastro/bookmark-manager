@@ -28,6 +28,8 @@ class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Bookmark.objects.filter(owner=self.request.user)
 
+    permission_classes = (permissions.IsAuthenticated,)
+
 
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
