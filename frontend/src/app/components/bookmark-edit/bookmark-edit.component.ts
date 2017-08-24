@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { BookmarkService } from './../../services/bookmark.service';
 import { Bookmark } from './../../classes/bookmark';
+
+import { BookmarkService } from './../../services/bookmark.service';
 
 @Component({
   selector: 'app-bookmark-edit',
   templateUrl: './bookmark-edit.component.html',
   styleUrls: ['./bookmark-edit.component.css']
 })
+
 export class BookmarkEditComponent implements OnInit {
   formEdit: FormGroup;
   id: string;
@@ -20,7 +22,7 @@ export class BookmarkEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(

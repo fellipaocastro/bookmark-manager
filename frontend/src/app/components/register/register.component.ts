@@ -9,6 +9,7 @@ import { UserService } from './../../services/user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
   formRegister: FormGroup;
 
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formRegister = this.formBuilder.group({

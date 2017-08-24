@@ -9,6 +9,7 @@ import { BookmarkService } from './../../services/bookmark.service';
   templateUrl: './bookmark-new.component.html',
   styleUrls: ['./bookmark-new.component.css']
 })
+
 export class BookmarkNewComponent implements OnInit {
   formNew: FormGroup;
 
@@ -16,7 +17,7 @@ export class BookmarkNewComponent implements OnInit {
     private bookmarkService: BookmarkService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formNew = this.formBuilder.group({
