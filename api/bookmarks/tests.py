@@ -33,12 +33,12 @@ class BookmarkTestCase(TestCase):
 {"id":3,"username":"user2","is_staff":false}]'''
         self.assertEqual(response.content, expected_response)
 
-    def test_admin_can_retrieve_details_of_a_user(self):
+    def test_admin_cannot_retrieve_details_of_a_user(self):
         self.client.force_authenticate(user=self.admin)
 
         response = self.client.get('/users/2/')
 
-        expected_response = b'{"id":2,"username":"user1","is_staff":false}'
+        expected_response = b'{"detail":"Not found."}'
         self.assertEqual(response.content, expected_response)
 
     def test_admin_can_retrieve_list_of_all_bookmarks(self):
@@ -59,12 +59,20 @@ class BookmarkTestCase(TestCase):
         expected_response = b'{"detail":"You do not have permission to perform this action."}'
         self.assertEqual(response.content, expected_response)
 
-    def test_user_cannot_retrieve_details_of_a_user(self):
+    def test_user_can_retrieve_details_of_itself(self):
+        self.client.force_authenticate(user=self.user1)
+
+        response = self.client.get('/users/2/')
+
+        expected_response = b'{"id":2,"username":"user1","is_staff":false}'
+        self.assertEqual(response.content, expected_response)
+
+    def test_user_cannot_retrieve_details_of_other_user(self):
         self.client.force_authenticate(user=self.user1)
 
         response = self.client.get('/users/3/')
 
-        expected_response = b'{"detail":"You do not have permission to perform this action."}'
+        expected_response = b'{"detail":"Not found."}'
         self.assertEqual(response.content, expected_response)
 
     def test_user_can_retrieve_list_of_its_own_bookmarks(self):
