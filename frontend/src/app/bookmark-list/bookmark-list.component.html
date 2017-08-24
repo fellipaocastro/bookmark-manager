@@ -1,5 +1,6 @@
 <h1>{{title}}</h1>
 <h2>My Bookmarks</h2>
+<button (click)="loginService.logout()">Logout</button>
 <ul class="bookmarks">
   <li *ngFor="let bookmark of bookmarks" (click)="onSelect(bookmark)">
     <span class="badge">{{bookmark.id}}</span> {{bookmark.name}}

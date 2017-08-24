@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BookmarkListComponent } from './bookmark-list/bookmark-list.component';
 import { BookmarkDetailComponent } from './bookmark-detail/bookmark-detail.component';
 import { BookmarkService } from './bookmark.service';
+import { LoginService } from './login.service';
 import { LoginComponent } from './login/login.component';
 import { RouteModule } from './app-routing.module';
 import { AuthGuard } from './auth.guard';
@@ -27,11 +28,13 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouteModule
   ],
   providers: [
     BookmarkService,
+    LoginService,
     AuthGuard,
     {
       provide: AuthHttp,
