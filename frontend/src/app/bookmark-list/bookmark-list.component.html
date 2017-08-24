@@ -4,6 +4,6 @@
 <ul class="bookmarks">
   <li *ngFor="let bookmark of bookmarks">
     <span class="badge">{{bookmark.id}}</span> {{bookmark.name}}
-    <button *ngIf="!isStaff" (click)="delete(bookmark)">X</button>
+    <button *ngIf="isStaff === 'false'" (click)="delete(bookmark)">X</button>
   </li>
 </ul>
