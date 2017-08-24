@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 
-from rest_framework import generics, permissions
+from rest_framework import generics
 
 from bookmarks.models import Bookmark
 from bookmarks.serializers import BookmarkSerializer, UserSerializer
@@ -19,16 +19,12 @@ class BookmarkList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-    permission_classes = (permissions.IsAuthenticated,)
-
 
 class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookmarkSerializer
 
     def get_queryset(self):
         return Bookmark.objects.filter(owner=self.request.user)
-
-    permission_classes = (permissions.IsAuthenticated,)
 
 
 class UserList(generics.ListCreateAPIView):
@@ -43,5 +39,3 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
-
-    permission_classes = (permissions.IsAuthenticated,)
