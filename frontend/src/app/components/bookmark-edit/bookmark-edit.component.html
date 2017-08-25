@@ -1,4 +1,4 @@
-<a href="#" (click)="userService.logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+<button (click)="userService.logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button>
 <h2>Edição</h2>
 <form [formGroup]="formEdit">
   <input type='text' formControlName="name" [(ngModel)]="bookmark.name">
