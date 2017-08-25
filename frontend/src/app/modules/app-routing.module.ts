@@ -10,7 +10,7 @@ import { AuthGuard } from './../guards/auth.guard';
 
 const appRoutes: Routes = [
   {path: 'bookmarks/new', component: BookmarkNewComponent, canActivate: [AuthGuard]},
-  {path: 'bookmarks/:id', component: BookmarkEditComponent, canActivate: [AuthGuard]},
+  {path: 'bookmarks/edit/:id', component: BookmarkEditComponent, canActivate: [AuthGuard]},
   {path: 'bookmarks', component: BookmarkListComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

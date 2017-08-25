@@ -16,7 +16,7 @@
       <td>{{bookmark.name}}</td>
       <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.url}}</a></td>
       <td *ngIf="isStaff === 'false'">
-        <a class="btn btn-warning" href="bookmarks/{{bookmark.id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        <a class="btn btn-warning" href="bookmarks/edit/{{bookmark.id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
         <a class="btn btn-danger" (click)="delete(bookmark)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
       </td>
     </tr>
