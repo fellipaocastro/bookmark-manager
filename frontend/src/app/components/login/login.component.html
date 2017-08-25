@@ -1,7 +1,7 @@
 <h2>Login</h2>
-<a href="register">Cadastro</a>
+<a class="btn btn-primary" href="register">Cadastro</a>
 <form [formGroup]="formLogin">
   <input type='text' formControlName="username">
   <input type='password' formControlName="password">
-  <button [disabled]="!formLogin.valid" (click)="send()"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
+  <button class="btn btn-default" [disabled]="!formLogin.valid" (click)="send()"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
 </form>
