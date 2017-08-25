@@ -1,5 +1,4 @@
 <h2>Listagem</h2>
-<button (click)="userService.logout()">Logout</button>
 <a href="bookmarks/new">Criar</a>
 <table>
   <thead>
@@ -12,6 +11,9 @@
     <td *ngIf="isStaff === 'true'">{{bookmark.owner_username}}</td>
     <td>{{bookmark.name}}</td>
     <td><a href="{{bookmark.url}}">{{bookmark.url}}</a></td>
-    <td *ngIf="isStaff === 'false'"><button (click)="delete(bookmark)">X</button></td>
+    <td *ngIf="isStaff === 'false'">
+      <a href="bookmarks/{{bookmark.id}}">editar</a>
+      <button (click)="delete(bookmark)">X</button>
+    </td>
   </tr>
 </table>
