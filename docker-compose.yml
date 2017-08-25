@@ -1,0 +1,20 @@
+version: '2'
+services:
+    frontend:
+        image: node:8.4.0-alpine
+        container_name: frontend
+        ports:
+            - "4200:4200"
+        volumes:
+            - ./frontend:/frontend
+        working_dir: /frontend
+        command: /bin/sh -c "cd /frontend && npm install && ./node_modules/.bin/ng serve --host=0.0.0.0"
+    api:
+        image: python:3.6.2-alpine3.6
+        container_name: api
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./api:/api
+        working_dir: /api
+        command: /bin/sh -c "cd /api && pip install -r requirements.txt && python manage.py migrate && python manage.py createsuperuser && python manage.py runserver 0.0.0.0:8000"
