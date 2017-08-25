@@ -6,7 +6,7 @@
   
 ## Frontend
 
-* node 8.4.0
+* Node.js 8.4.0
 * npm 5.3.0
 * Angular 4.2.4
 * angular2-jwt 0.2.3
