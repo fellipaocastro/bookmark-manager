@@ -52,7 +52,7 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('is_staff');
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/accounts/login']);
   }
 
   create(data){

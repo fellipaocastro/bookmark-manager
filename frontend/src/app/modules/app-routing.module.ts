@@ -9,12 +9,12 @@ import { RegisterComponent } from './../components/register/register.component';
 import { AuthGuard } from './../guards/auth.guard';
 
 const appRoutes: Routes = [
+  {path: 'bookmarks', component: BookmarkListComponent, canActivate: [AuthGuard]},
   {path: 'bookmarks/new', component: BookmarkNewComponent, canActivate: [AuthGuard]},
   {path: 'bookmarks/edit/:id', component: BookmarkEditComponent, canActivate: [AuthGuard]},
-  {path: 'bookmarks', component: BookmarkListComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: '**', redirectTo: '/login'}
+  {path: 'accounts/login', component: LoginComponent},
+  {path: 'accounts/register', component: RegisterComponent},
+  {path: '**', redirectTo: '/accounts/login'}
 ]
 
 export const RouteModule = RouterModule.forRoot(appRoutes);
