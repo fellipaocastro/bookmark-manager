@@ -1,6 +1,14 @@
 <h2>Cadastro de usuário</h2>
-<form [formGroup]="formRegister">
-  <input type='text' formControlName="username">
-  <input type='password' formControlName="password">
-  <button class="btn btn-success" [disabled]="!formRegister.valid" (click)="send()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-</form>
+<div class="container">
+  <form [formGroup]="formRegister">
+    <div class="form-group">
+      <label for="username"><span class="glyphicon glyphicon-user"></span></label>
+      <input type='text' id="username" class="form-control" placeholder='username' formControlName="username">
+    </div>
+    <div class="form-group">
+      <label for="password"><span class="glyphicon glyphicon-lock"></span></label>
+      <input type='password' id="password" class="form-control" formControlName="password">
+    </div>
+    <button class="btn btn-success" [disabled]="!formRegister.valid" (click)="send()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+  </form>
+</div>

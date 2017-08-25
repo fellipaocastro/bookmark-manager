@@ -1,7 +1,15 @@
-<h2>Login</h2>
 <a class="btn btn-primary" href="accounts/register">Cadastro de usuário</a>
-<form [formGroup]="formLogin">
-  <input type='text' formControlName="username">
-  <input type='password' formControlName="password">
-  <button class="btn btn-default" [disabled]="!formLogin.valid" (click)="send()"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
-</form>
+<h2>Login</h2>
+<div class="container">
+  <form [formGroup]="formLogin">
+    <div class="form-group">
+      <label for="username"><span class="glyphicon glyphicon-user"></span></label>
+      <input type='text' id="username" class="form-control" placeholder='username' formControlName="username">
+    </div>
+    <div class="form-group">
+      <label for="password"><span class="glyphicon glyphicon-lock"></span></label>
+      <input type='password' id="password" class="form-control" formControlName="password">
+    </div>
+    <button class="btn btn-default" [disabled]="!formLogin.valid" (click)="send()"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
+  </form>
+</div>
