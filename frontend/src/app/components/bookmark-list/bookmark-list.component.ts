@@ -8,7 +8,6 @@ import { UserService } from './../../services/user.service';
 @Component({
   selector: 'bookmark-list',
   templateUrl: './bookmark-list.component.html',
-  styleUrls: ['./bookmark-list.component.css']
 })
 
 export class BookmarkListComponent implements OnInit {

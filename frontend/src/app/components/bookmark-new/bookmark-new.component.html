@@ -1,7 +1,7 @@
-<button (click)="userService.logout()">Logout</button>
+<a href="#" (click)="userService.logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
 <h2>Criação</h2>
 <form [formGroup]="formNew">
   <input type='text' formControlName="name">
   <input type='text' formControlName="url">
-  <button [disabled]="!formNew.valid" (click)="send()">Criar</button>
+  <button [disabled]="!formNew.valid" (click)="send()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
 </form>

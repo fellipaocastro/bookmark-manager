@@ -1,7 +1,7 @@
-<button (click)="userService.logout()">Logout</button>
+<a href="#" (click)="userService.logout()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
 <h2>Edição</h2>
 <form [formGroup]="formEdit">
   <input type='text' formControlName="name" [(ngModel)]="bookmark.name">
   <input type='text' formControlName="url" [(ngModel)]="bookmark.url">
-  <button [disabled]="!formEdit.valid" (click)="send()">Atualizar</button>
+  <button [disabled]="!formEdit.valid" (click)="send()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
 </form>

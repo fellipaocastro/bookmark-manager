@@ -9,8 +9,7 @@ import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-bookmark-edit',
-  templateUrl: './bookmark-edit.component.html',
-  styleUrls: ['./bookmark-edit.component.css']
+  templateUrl: './bookmark-edit.component.html'
 })
 
 export class BookmarkEditComponent implements OnInit {
