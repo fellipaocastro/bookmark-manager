@@ -12,7 +12,7 @@
 
 ## Backend
 
-* Python 3,6,2
+* Python 3.6.2
 * Django 1.11.4
 * Django REST framework 3,6,3
 * REST framework JWT Auth 1.11.0
