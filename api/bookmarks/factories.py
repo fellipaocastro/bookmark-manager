@@ -10,13 +10,13 @@ class UserFactory(factory.django.DjangoModelFactory):
         model = User
         django_get_or_create = ('username', 'email', 'password')
 
-    username = factory.Sequence(lambda n: "User {}".format(n))
+    username = factory.Sequence(lambda n: "user{}".format(n))
     email = factory.Sequence(lambda n: "email{}@example.com".format(n))
     password = factory.Sequence(lambda n: "password{}".format(n))
 
 
 class AdminFactory(UserFactory):
-    username = 'admin'
+    username = factory.Sequence(lambda n: "admin{}".format(n))
     is_staff = True
 
 

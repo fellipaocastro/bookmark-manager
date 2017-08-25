@@ -1,8 +1,9 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
 
 from rest_framework.test import APIClient
 
-from bookmarks.factories import UserFactory, AdminFactory, BookmarkFactory
+from bookmarks.factories import UserFactory, BookmarkFactory
 
 
 class BookmarkTestCase(TestCase):
@@ -10,7 +11,7 @@ class BookmarkTestCase(TestCase):
     def setUpClass(cls):
         super(BookmarkTestCase, cls).setUpClass()
 
-        cls.admin = AdminFactory.create()
+        cls.admin = User.objects.get(username='admin')
         cls.user1 = UserFactory.create(username='user1')
         cls.user2 = UserFactory.create(username='user2')
 
