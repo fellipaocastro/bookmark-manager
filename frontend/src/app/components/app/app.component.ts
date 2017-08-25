@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { UserService } from './../../services/user.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
@@ -9,8 +7,4 @@ import { UserService } from './../../services/user.service';
 
 export class AppComponent {
   title = 'Bookmark Manager';
-
-  constructor(
-    private userService: UserService
-  ) {}
 }

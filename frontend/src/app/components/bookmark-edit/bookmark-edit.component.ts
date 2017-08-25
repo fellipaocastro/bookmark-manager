@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Bookmark } from './../../classes/bookmark';
 
 import { BookmarkService } from './../../services/bookmark.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-bookmark-edit',
@@ -19,6 +20,7 @@ export class BookmarkEditComponent implements OnInit {
 
   constructor(
     private bookmarkService: BookmarkService,
+    private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute

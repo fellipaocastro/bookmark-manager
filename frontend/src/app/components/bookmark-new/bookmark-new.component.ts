@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { BookmarkService } from './../../services/bookmark.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-bookmark-new',
@@ -15,6 +16,7 @@ export class BookmarkNewComponent implements OnInit {
 
   constructor(
     private bookmarkService: BookmarkService,
+    private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}

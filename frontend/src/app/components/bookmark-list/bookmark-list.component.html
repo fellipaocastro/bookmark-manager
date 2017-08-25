@@ -1,5 +1,6 @@
+<button (click)="userService.logout()">Logout</button>
 <h2>Listagem</h2>
-<a href="bookmarks/new">Criar</a>
+<a *ngIf="isStaff === 'false'" href="bookmarks/new">Adicionar</a>
 <table>
   <thead>
     <th *ngIf="isStaff === 'true'">dono</th>
