@@ -33,6 +33,7 @@
   http://localhost:4200
   
   username: admin
+  
   password: q1w2e3r4
 
 ## Test
