@@ -19,10 +19,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Bookmark',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False,
+                                        verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('url', models.URLField()),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bookmarks', to=settings.AUTH_USER_MODEL)),
+                ('owner', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='bookmarks', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

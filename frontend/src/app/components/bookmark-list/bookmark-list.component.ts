@@ -12,7 +12,6 @@ import { UserService } from './../../services/user.service';
 })
 
 export class BookmarkListComponent implements OnInit {
-  title = 'Bookmark Manager';
   bookmarks: Bookmark[];
   selectedBookmark: Bookmark;
   isStaff: string = localStorage.getItem('is_staff');
