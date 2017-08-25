@@ -1,9 +1,17 @@
 <h2>Listagem</h2>
 <button (click)="userService.logout()">Logout</button>
 <a href="bookmarks/new">Criar</a>
-<ul class="bookmarks">
-  <li *ngFor="let bookmark of bookmarks">
-    <a href="bookmarks/{{bookmark.id}}"><span class="badge">{{bookmark.id}}</span> {{bookmark.name}}</a>
-    <button *ngIf="isStaff === 'false'" (click)="delete(bookmark)">X</button>
-  </li>
-</ul>
+<table>
+  <thead>
+    <th *ngIf="isStaff === 'true'">dono</th>
+    <th>nome</th>
+    <th>url</th>
+    <th *ngIf="isStaff === 'false'">ações</th>
+  </thead>
+  <tr *ngFor="let bookmark of bookmarks">
+    <td *ngIf="isStaff === 'true'">{{bookmark.owner_username}}</td>
+    <td>{{bookmark.name}}</td>
+    <td><a href="{{bookmark.url}}">{{bookmark.url}}</a></td>
+    <td *ngIf="isStaff === 'false'"><button (click)="delete(bookmark)">X</button></td>
+  </tr>
+</table>
