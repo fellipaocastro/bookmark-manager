@@ -3,18 +3,22 @@
 <a class="btn btn-info" *ngIf="isStaff === 'false'" href="bookmarks/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
 <table class="table">
   <thead>
-    <th *ngIf="isStaff === 'true'">dono</th>
-    <th>nome</th>
-    <th>url</th>
-    <th *ngIf="isStaff === 'false'">ações</th>
+    <tr>
+      <th *ngIf="isStaff === 'true'">dono</th>
+      <th>nome</th>
+      <th>url</th>
+      <th *ngIf="isStaff === 'false'">ações</th>
+    </tr>
   </thead>
-  <tr *ngFor="let bookmark of bookmarks">
-    <td *ngIf="isStaff === 'true'">{{bookmark.owner_username}}</td>
-    <td>{{bookmark.name}}</td>
-    <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.url}}</a></td>
-    <td *ngIf="isStaff === 'false'">
-      <a class="btn btn-warning" href="bookmarks/{{bookmark.id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-      <a class="btn btn-danger" (click)="delete(bookmark)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-    </td>
-  </tr>
+  <tbody>
+    <tr *ngFor="let bookmark of bookmarks">
+      <td *ngIf="isStaff === 'true'">{{bookmark.owner_username}}</td>
+      <td>{{bookmark.name}}</td>
+      <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.url}}</a></td>
+      <td *ngIf="isStaff === 'false'">
+        <a class="btn btn-warning" href="bookmarks/{{bookmark.id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        <a class="btn btn-danger" (click)="delete(bookmark)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+      </td>
+    </tr>
+  </tbody>
 </table>
