@@ -14,10 +14,17 @@
 
 ## Backend
 
+* nginx 1.13.3
 * Python 3.6.2
 * Django 1.11.4
+* Gunicorn 19.7.1
 * Django REST framework 3.6.3
 * REST framework JWT Auth 1.11.0
+
+## Database
+
+* PostgreSQL 9.6.4
+* SQLite 3
 
 ## Requirements
 
@@ -26,7 +33,7 @@
 
 ## Setup
 
-  ```$ docker-compose up```
+  ```$ docker-compose up -d```
 
 ## Usage
 

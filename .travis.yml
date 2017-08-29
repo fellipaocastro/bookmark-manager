@@ -5,7 +5,7 @@ install:
     - pip install -r api/requirements.txt
 script:
     - cd api
-    - python manage.py migrate
-    - python manage.py test
+    - python manage.py migrate --settings=api.settings.test
+    - python manage.py test --settings=api.settings.test
     - flake8 .
     - cd -
