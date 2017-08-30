@@ -12,26 +12,26 @@ export class BookmarkService {
 
   getBookmarks() {
     return this.authHttp.get(`${environment.apiUrl}/bookmarks/`)
-      .map(response => <Bookmark[]> response.json())
+      .map(response => <Bookmark[]> response.json());
   }
 
   get(id) {
     return this.authHttp.get(`${environment.apiUrl}/bookmarks/${id}/`)
-      .map(response => <Bookmark> response.json())
+      .map(response => <Bookmark> response.json());
   }
 
   create(data) {
     return this.authHttp.post(`${environment.apiUrl}/bookmarks/`, data)
-      .map(response => response.json())
+      .map(response => response.json());
   }
 
   update(id, data) {
     return this.authHttp.put(`${environment.apiUrl}/bookmarks/${id}/`, data)
-      .map(response => response.json())
+      .map(response => response.json());
   }
 
   delete(id) {
     return this.authHttp.delete(`${environment.apiUrl}/bookmarks/${id}/`)
-      .map(response => response.json())
+      .map(response => response.json());
   }
 }

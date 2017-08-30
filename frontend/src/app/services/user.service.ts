@@ -13,7 +13,7 @@ export class UserService {
     private router: Router
   ) {}
 
-  login(data){
+  login(data) {
     let payload;
 
     payload = {
@@ -31,7 +31,7 @@ export class UserService {
 
         this.detail(id)
           .subscribe(
-            response => {
+             response => {
               localStorage.setItem('is_staff', response.is_staff);
               this.router.navigate(['/bookmarks']);
             },
@@ -43,19 +43,19 @@ export class UserService {
     );
   }
 
-  detail(id){
+  detail(id) {
     return this.authHttp.get(`${environment.apiUrl}/users/${id}/`)
-      .map(response => response.json())
+      .map(response => response.json());
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('is_staff');
 
     this.router.navigate(['/accounts/login']);
   }
 
-  create(data){
+  create(data) {
     let payload;
 
     payload = {

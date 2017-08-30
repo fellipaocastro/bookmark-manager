@@ -24,7 +24,7 @@ export class BookmarkNewComponent implements OnInit {
     this.formNew = this.formBuilder.group({
       'name': ['', [Validators.required]],
       'url': ['', [Validators.required]]
-    })
+    });
   }
 
   send() {

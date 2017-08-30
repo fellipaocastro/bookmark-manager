@@ -15,6 +15,6 @@ const appRoutes: Routes = [
   {path: 'accounts/login', component: LoginComponent},
   {path: 'accounts/register', component: RegisterComponent},
   {path: '**', redirectTo: '/accounts/login'}
-]
+];
 
 export const RouteModule = RouterModule.forRoot(appRoutes);

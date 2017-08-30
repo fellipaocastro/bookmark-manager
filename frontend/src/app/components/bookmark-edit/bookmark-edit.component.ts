@@ -38,7 +38,7 @@ export class BookmarkEditComponent implements OnInit {
     this.formEdit = this.formBuilder.group({
       'name': ['', [Validators.required]],
       'url': ['', [Validators.required]]
-    })
+    });
   }
 
   send() {
