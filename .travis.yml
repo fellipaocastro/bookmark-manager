@@ -3,7 +3,7 @@ python:
     - '3.6'
 install:
     - cd api && pip install -r requirements.txt && cd -
-    - cd frontend && npm install && cd-
+    - cd frontend && npm install && cd -
 script:
     - cd api && python manage.py migrate --settings=api.settings.test && cd -
     - cd api && python api/manage.py test --settings=api.settings.test && cd -
