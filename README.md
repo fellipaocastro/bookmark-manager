@@ -49,6 +49,8 @@
 
   ```$ docker-compose exec api flake8 .```
 
+  ```$ docker-compose exec frontend ./node_modules/.bin/ng lint --type-check```
+
 ## Interactive shell
 
   ```$ docker-compose exec api python manage.py shell```
