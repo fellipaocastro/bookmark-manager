@@ -4,10 +4,7 @@ python:
 install:
     - pip install -r api/requirements.txt
 script:
-    - cd api
-    - python manage.py migrate --settings=api.settings.test
-    - python manage.py test --settings=api.settings.test
-    - flake8 .
-    - cd ../frontend
-    - ng lint --type-check
-    - cd -
+    - python api/manage.py migrate --settings=api.settings.test
+    - python api/manage.py test --settings=api.settings.test
+    - flake8 api
+    - ./frontend/node_modules/.bin/ng lint --type-check
