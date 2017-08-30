@@ -8,4 +8,4 @@ script:
     - cd api && python manage.py migrate --settings=api.settings.test && cd -
     - cd api && python manage.py test --settings=api.settings.test && cd -
     - cd api && flake8 . && cd -
-    - ./frontend/node_modules/.bin/ng lint --type-check
+    - cd frontend && ./node_modules/.bin/ng lint --type-check && cd -
