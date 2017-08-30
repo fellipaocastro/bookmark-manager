@@ -43,7 +43,7 @@
 
 ## Test
 
-  ```$ docker-compose exec api python manage.py test```
+  ```$ docker-compose exec api python manage.py test  --settings=api.settings.test```
 
 ## Source code check
 
