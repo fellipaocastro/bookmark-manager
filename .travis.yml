@@ -3,6 +3,7 @@ python:
     - '3.6'
 install:
     - pip install -r api/requirements.txt
+    - cd frontend && npm install
 script:
     - python api/manage.py migrate --settings=api.settings.test
     - python api/manage.py test --settings=api.settings.test
