@@ -6,7 +6,7 @@ import { BookmarkService } from './../../services/bookmark.service';
 import { UserService } from './../../services/user.service';
 
 @Component({
-  selector: 'bookmark-list',
+  selector: 'app-bookmark-list',
   templateUrl: './bookmark-list.component.html',
 })
 

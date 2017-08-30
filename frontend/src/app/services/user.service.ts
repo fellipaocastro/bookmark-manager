@@ -31,8 +31,8 @@ export class UserService {
 
         this.detail(id)
           .subscribe(
-             response => {
-              localStorage.setItem('is_staff', response.is_staff);
+             response2 => {
+              localStorage.setItem('is_staff', response2.is_staff);
               this.router.navigate(['/bookmarks']);
             },
             error => {
