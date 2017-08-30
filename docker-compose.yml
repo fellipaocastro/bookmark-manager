@@ -13,13 +13,13 @@ services:
             - db
         expose:
             - "8000"
-    ngninx:
+    ngninx_api:
         image: nginx:1.13.3-alpine
         ports:
             - "8000:8000"
         volumes:
             - ./api:/api
-            - ./config/nginx:/etc/nginx/conf.d
+            - ./config/nginx/api.conf:/etc/nginx/conf.d/api.conf
         depends_on:
             - api
     frontend:
