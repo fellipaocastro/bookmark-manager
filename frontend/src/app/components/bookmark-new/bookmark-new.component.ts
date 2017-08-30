@@ -36,4 +36,8 @@ export class BookmarkNewComponent implements OnInit {
       );
     }
   }
+
+  logout() {
+   this.userService.logout();
+  }
 }

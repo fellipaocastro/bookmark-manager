@@ -36,4 +36,8 @@ export class BookmarkListComponent implements OnInit {
       }
     );
   }
+
+  logout() {
+   this.userService.logout();
+  }
 }

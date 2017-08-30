@@ -8,4 +8,6 @@ script:
     - python manage.py migrate --settings=api.settings.test
     - python manage.py test --settings=api.settings.test
     - flake8 .
+    - cd ../frontend
+    - ng lint --type-check
     - cd -

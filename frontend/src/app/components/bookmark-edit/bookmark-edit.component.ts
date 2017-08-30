@@ -50,4 +50,8 @@ export class BookmarkEditComponent implements OnInit {
       );
     }
   }
+
+  logout() {
+   this.userService.logout();
+  }
 }
