@@ -2,10 +2,10 @@ language: python
 python:
     - '3.6'
 install:
-    - pip install -r api/requirements.txt
-    - cd frontend && npm install
+    - cd api && pip install -r requirements.txt && cd -
+    - cd frontend && npm install && cd-
 script:
-    - python api/manage.py migrate --settings=api.settings.test
-    - python api/manage.py test --settings=api.settings.test
-    - flake8 api
+    - cd api && python manage.py migrate --settings=api.settings.test && cd -
+    - cd api && python api/manage.py test --settings=api.settings.test && cd -
+    - cd api && flake8 . && cd -
     - ./frontend/node_modules/.bin/ng lint --type-check
