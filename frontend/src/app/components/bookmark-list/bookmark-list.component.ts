@@ -20,12 +20,9 @@ export class BookmarkListComponent implements OnInit {
     private userService: UserService
   ) {}
 
-  getBookmarks(): void {
-    this.bookmarkService.getBookmarks().subscribe(bookmarks => this.bookmarks = bookmarks);
-  }
-
   ngOnInit(): void {
-    this.getBookmarks();
+    this.bookmarkService.all()
+      .subscribe(bookmarks => this.bookmarks = bookmarks);
   }
 
   delete(bookmark) {

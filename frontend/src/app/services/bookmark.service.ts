@@ -10,7 +10,7 @@ import { Bookmark } from './../classes/bookmark';
 export class BookmarkService {
   constructor(private authHttp: AuthHttp) {}
 
-  getBookmarks() {
+  all() {
     return this.authHttp.get(`${environment.apiUrl}/bookmarks/`)
       .map(response => <Bookmark[]> response.json());
   }
