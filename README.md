@@ -33,7 +33,7 @@
 
 ## Setup
 
-  ```$ docker-compose up -d```
+  ```$ make up```
 
 ## Usage
 
@@ -43,14 +43,12 @@
 
 ## Test
 
-  ```$ docker-compose exec api python manage.py test  --settings=api.settings.test```
+  ```$ make test```
 
 ## Source code check
 
-  ```$ docker-compose exec api flake8 .```
-
-  ```$ docker-compose exec frontend ./node_modules/.bin/ng lint --type-check```
+  ```$ make lint```
 
 ## Interactive shell
 
-  ```$ docker-compose exec api python manage.py shell```
+  ```$ make shell```
