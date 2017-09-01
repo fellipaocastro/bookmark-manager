@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { AuthHttp } from 'angular2-jwt';
 
 import { environment } from '../../environments/environment';
-import { Bookmark } from './../classes/bookmark';
+import { Bookmark } from '../classes/bookmark';
 
 @Injectable()
 export class BookmarkService {
