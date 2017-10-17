@@ -10,7 +10,7 @@ help:
 	@echo "  shell              Run interactive shell."
 
 up:
-	@docker-compose up -d
+	@docker-compose up --force-recreate -d
 
 stop:
 	@docker-compose stop
